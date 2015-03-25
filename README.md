@@ -8,7 +8,7 @@
 ## Usage
 
 ```objc
-<API>
+- (NSDictionary *)hyp_dictionaryByRemovingNullItems;
 ```
 
 ## Installation
