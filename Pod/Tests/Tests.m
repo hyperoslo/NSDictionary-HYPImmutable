@@ -1,22 +1,20 @@
 @import UIKit;
 @import XCTest;
 
+#import "NSDictionary+HYPImmutable.h"
+
 @interface PodTests : XCTestCase
 
 @end
 
 @implementation PodTests
 
-- (void)testPassingExample
+- (void)testDictionaryByRemovingNullItems
 {
-    NSArray *array;
-    XCTAssertNil(array);
-}
+    NSDictionary *dictionary = @{@"first_name" : @"Domenica",
+                                 @"last_name" : [NSNull null]};
 
-- (void)testFailingExample
-{
-    NSArray *array;
-    XCTAssertNotNil(array);
+    XCTAssertEqualObjects([dictionary hyp_dictionaryByRemovingNullItems], @{@"first_name" : @"Domenica"});
 }
 
 @end
