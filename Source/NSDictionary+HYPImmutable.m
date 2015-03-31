@@ -2,22 +2,22 @@
 
 @implementation NSDictionary (HYPImmutable)
 
-- (NSDictionary *)hyp_dictionaryByRemovingNullItems
+- (NSDictionary *)hyp_removingNulls
 {
-    NSMutableArray *keysForNullValues = [NSMutableArray new];
+    NSMutableArray *keysForNulls = [NSMutableArray new];
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:[NSNull class]]) {
-            [keysForNullValues addObject:key];
+            [keysForNulls addObject:key];
         }
     }];
 
     NSMutableDictionary *values = [self mutableCopy];
-    [values removeObjectsForKeys:keysForNullValues];
+    [values removeObjectsForKeys:keysForNulls];
 
     return [values copy];
 }
 
-- (NSDictionary *)hyp_dictionaryByRemovingKey:(id <NSCopying>)key
+- (NSDictionary *)hyp_removingKey:(id <NSCopying>)key
 {
     NSMutableDictionary *dictionary = [self mutableCopy];
     [dictionary removeObjectForKey:key];
@@ -25,18 +25,18 @@
     return [dictionary copy];
 }
 
-- (NSDictionary *)hyp_dictionaryBySettingObject:(id)object forKey:(id <NSCopying>)key
+- (NSDictionary *)hyp_settingObject:(id)object forKey:(id <NSCopying>)key
 {
     NSMutableDictionary *dictionary = [self mutableCopy];
-    [dictionary setObject:object forKey:key];
+    dictionary[key] = object;
 
     return [dictionary copy];
 }
 
-- (NSDictionary *)hyp_dictionaryByAppendingDictionary:(NSDictionary *)dicitonary
+- (NSDictionary *)hyp_appendingDictionary:(NSDictionary *)dictionary
 {
     NSMutableDictionary *mutableDictionary = [self mutableCopy];
-    [mutableDictionary addEntriesFromDictionary:dicitonary];
+    [mutableDictionary addEntriesFromDictionary:dictionary];
 
     return [mutableDictionary copy];
 }

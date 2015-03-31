@@ -2,10 +2,12 @@
 
 @interface NSDictionary (HYPImmutable)
 
-- (NSDictionary *)hyp_dictionaryByRemovingNullItems;
+- (NSDictionary *)hyp_removingNulls;
 
-- (NSDictionary *)hyp_dictionaryByRemovingKey:(id <NSCopying>)key;
-- (NSDictionary *)hyp_dictionaryBySettingObject:(id)object forKey:(id <NSCopying>)key;
-- (NSDictionary *)hyp_dictionaryByAppendingDictionary:(NSDictionary *)dicitonary;
+- (NSDictionary *)hyp_removingKey:(id <NSCopying>)key;
+
+- (NSDictionary *)hyp_settingObject:(id)object forKey:(id <NSCopying>)key;
+
+- (NSDictionary *)hyp_appendingDictionary:(NSDictionary *)dictionary;
 
 @end
