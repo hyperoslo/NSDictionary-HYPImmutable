@@ -8,6 +8,8 @@
 ## Usage
 
 ```objc
+#import "NSDictionary+HYPImmutable.h"
+
 - (NSDictionary *)hyp_removingNulls;
 
 - (NSDictionary *)hyp_removingKey:(id <NSCopying>)key;
